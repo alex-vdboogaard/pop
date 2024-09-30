@@ -1,7 +1,7 @@
 # Pop!
 A simple npm package for displaying messages, confirming actions, and getting input from users. Best for small projects and basic validation.
 ## Examples
-Live example: https://alex-vdboogaard.github.io/pop/example.html
+Live example: https://alex-vdboogaard.github.io/pop-files/
 ### Simple popups
 ```JavaScript 
 simplePop("success", "Welcome new user!") //success message
