@@ -1,6 +1,6 @@
 {
   "name": "pop-message",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A basic package to display messages and get input from users",
   "main": "index.js",
   "scripts": {
