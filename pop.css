@@ -13,16 +13,16 @@
     max-width: 100%;
 }
 
-.pop-success {
-    background-color: green;
-    padding: 0px 20px;
-    color: white;
-}
-
 .pop-input {
     padding: 10px 20px;
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+.pop-success {
+    background-color: green;
+    padding: 0px 20px;
+    color: white;
 }
 
 .pop-error {
@@ -33,6 +33,12 @@
 
 .pop-warning {
     background-color: #E48509;
+    padding: 0px 20px;
+    color: white;
+}
+
+.pop-info {
+    background-color: #110CA5;
     padding: 0px 20px;
     color: white;
 }
