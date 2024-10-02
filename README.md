@@ -1,5 +1,8 @@
-# Pop!
+# pop-message
 A simple npm package for displaying messages, confirming actions, and getting input from users. Best for small projects and basic validation.
+```JavaScript
+npm install pop-message
+```
 ## Examples
 Live example: https://alex-vdboogaard.github.io/pop-files/
 ### Simple popups
