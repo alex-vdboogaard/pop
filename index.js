@@ -154,3 +154,7 @@ export async function inputPops(vals) {
         });
     });
 }
+
+const pops = { simplePop, confirmPop, inputPop, inputPops };
+
+export default pops;
