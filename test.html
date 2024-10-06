@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pop.css">
+    <title>Document</title>
+</head>
+<body style="height: 100vh;">
+    <button id="test">hello</button>
+    <button id="test2">name</button>
+    <script type="module">
+    import pops from "./index.js"
+    document.querySelector("#test").addEventListener("click", ()=> {
+        pops.simplePop("warning", "You can use the sidebar to rearrange your items!");
+    });
+    document.querySelector("#test2").addEventListener("click",async ()=> {
+        const name = await pops.inputPop("Whats your name?");
+        pops.simplePop("success", name);
+    });
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     transform: translateX(-50%);
     transition: top 0.2s ease;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     z-index: 1001;
     font-size: 21px;
@@ -97,8 +97,11 @@
 }
 
 .pop-svg {
-    width: 20px;
-    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    margin-right: 10px;
 }
 
 .inputPopsText {
@@ -111,9 +114,10 @@
 
 @media (max-width:570px) {
     .pop-top {
-        max-width: 90%;
+        max-width: 80%;
+        width: 100%;
         font-size: 19px;
-        justify-content: center;
+        display: flex;
     }
 
     .pop-confirm {
