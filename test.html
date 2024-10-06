@@ -9,6 +9,7 @@
 <body style="height: 100vh;">
     <button id="test">hello</button>
     <button id="test2">name</button>
+    <button id="test3">confirm</button>
     <script type="module">
     import pops from "./index.js"
     document.querySelector("#test").addEventListener("click", ()=> {
@@ -17,6 +18,10 @@
     document.querySelector("#test2").addEventListener("click",async ()=> {
         const name = await pops.inputPop("Whats your name?");
         pops.simplePop("success", name);
+    });
+    document.querySelector("#test3").addEventListener("click",async ()=> {
+        const confirm = await pops.confirmPop("Are you sure you want to delete?");
+        pops.simplePop("success", confirm);
     });
     </script>
 </body>
