@@ -14,6 +14,27 @@
     color: white;
 }
 
+.pop-right {
+    position: fixed;
+    transform: none;
+    top: -100px;
+    left: auto;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.pop-left {
+    position: fixed;
+    transform: none;
+    top: -100px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
 .pop-success {
     background-color: green;
 }
@@ -111,6 +132,18 @@
         width: 100%;
         font-size: 19px;
         display: flex;
+    }
+
+    .pop-right,
+    .pop-left {
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pop-close {
+        margin-left: auto;
     }
 
     .pop-confirm {
