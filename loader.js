@@ -1,9 +1,9 @@
-export function showLoader(type, hmtlEl, options = {}) {
-    const text = "<p>Loading</p>";
-    if (options.text && options.text === false) {
+export function showLoader(type, htmlEl, options = {}) {
+    let text = "<p>Loading</p>";
+    if (options.text === false) {
         text = "";
     };
-    const target = document.querySelector(`${type}${hmtlEl}`);
+    const target = document.querySelector(`${type}${htmlEl}`);
     target.style.position = "relative";
 
     const loader = document.createElement("div");
@@ -16,10 +16,10 @@ export function showLoader(type, hmtlEl, options = {}) {
     target.appendChild(loader);
 }
 
-export function closeLoader(type = null, hmtlEl = null) {
+export function closeLoader(type = null, htmlEl = null) {
     //remove specific loader
     if (type) {
-        const parentElement = document.querySelector(`${type}${hmtlEl}`);
+        const parentElement = document.querySelector(`${type}${htmlEl}`);
         parentElement.querySelectorAll(".pop-loader").forEach(el => el.remove());
     }
     //remove all loaders
