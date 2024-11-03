@@ -1,4 +1,4 @@
-import pops from "./node_modules/pop-message/index.js";
+import pops from "/node_modules/pop-message/index.js";
 document.querySelector("#simpleSuccess").addEventListener("click", () => {
     const successMessage = document.querySelector(
         "#simplePopTextSuccess"
