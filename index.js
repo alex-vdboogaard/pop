@@ -1,169 +1,112 @@
-function closeAllPop() {
-    document.querySelectorAll(".pop").forEach(pop => { pop.remove(); });
-}
-
-function delayedRemove(timeMS = 3000) {
-    const popElements = document.querySelectorAll(".pop");
-    setTimeout(function () {
-        popElements.forEach(pop => {
-            pop.style.transition = "margin-top 0.5s ease-out";
-            pop.style.marginTop = "-80px";
-            pop.addEventListener("transitionend", function () {
-                pop.remove();
-            }, { once: true });
-        });
-    }, timeMS);
-}
-
-export function simplePop(type, message, options = {}) {
-    closeAllPop();
-
-    const body = document.querySelector("body");
-    const alert = document.createElement("div");
-
-    const closeIcon = options.close ? `<svg class='pop-close' onClick="this.parentNode.remove()" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_2565_24)"><path d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z" fill="white"/></g><defs><clipPath id="clip0_2565_24"><rect width="14" height="14" fill="white"/></clipPath></defs></svg>` : '';
-    const timeMS = options.time ? options.time : 3000;
-    const background = options.background ? options.background : "";
-    const position = options.position ? `pop-${options.position}` : "pop";
-
-    alert.classList.add("pop-top", "pop", `pop-${type}`, position);
-    alert.style.backgroundColor = background;
-
-    switch (type) {
-        case "success":
-            alert.innerHTML = `<svg class="pop-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 7L10 17L5 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <p>${message}</p>`;
-            break;
-        case "error":
-            alert.innerHTML = `<svg class="pop-svg" width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_2287_12)">
-            <path d="M45 0C20.1445 0 0 20.1445 0 45C0 69.8555 20.1445 90 45 90C69.8555 90 90 69.8555 90 45C90 20.1445 69.8555 0 45 0ZM11.25 45C11.25 26.3496 26.3672 11.25 45 11.25C52.4004 11.25 59.2383 13.6582 64.793 17.7012L17.7012 64.793C13.6582 59.2383 11.25 52.4004 11.25 45ZM45 78.75C37.5996 78.75 30.7617 76.3418 25.207 72.2988L72.2988 25.207C76.3418 30.7793 78.75 37.5996 78.75 45C78.75 63.6504 63.6328 78.75 45 78.75Z" fill="white"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_2287_12">
-            <rect width="90" height="90" fill="white"/>
-            </clipPath>
-            </defs>
-            </svg><p>${message}</p>`;
-            break;
-        case "warning":
-            alert.innerHTML = `<svg class="pop-svg" width="100" height="100" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 21L12 2L23 21H1ZM12 18C12.2833 18 12.521 17.904 12.713 17.712C12.905 17.52 13.0007 17.2827 13 17C12.9993 16.7173 12.9033 16.48 12.712 16.288C12.5207 16.096 12.2833 16 12 16C11.7167 16 11.4793 16.096 11.288 16.288C11.0967 16.48 11.0007 16.7173 11 17C10.9993 17.2827 11.0953 17.5203 11.288 17.713C11.4807 17.9057 11.718 18.0013 12 18ZM11 15H13V10H11V15Z" fill="white"/>
-            </svg><p>${message}</p>`;
-            break;
-        case "info":
-            alert.innerHTML = `<svg class="pop-svg" width="100" height="100" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 17H13V11H11V17ZM12 9C12.2833 9 12.521 8.904 12.713 8.712C12.905 8.52 13.0007 8.28267 13 8C12.9993 7.71733 12.9033 7.48 12.712 7.288C12.5207 7.096 12.2833 7 12 7C11.7167 7 11.4793 7.096 11.288 7.288C11.0967 7.48 11.0007 7.71733 11 8C10.9993 8.28267 11.0953 8.52033 11.288 8.713C11.4807 8.90567 11.718 9.00133 12 9ZM12 22C10.6167 22 9.31667 21.7373 8.1 21.212C6.88334 20.6867 5.825 19.9743 4.925 19.075C4.025 18.1757 3.31267 17.1173 2.788 15.9C2.26333 14.6827 2.00067 13.3827 2 12C1.99933 10.6173 2.262 9.31733 2.788 8.1C3.314 6.88267 4.02633 5.82433 4.925 4.925C5.82367 4.02567 6.882 3.31333 8.1 2.788C9.318 2.26267 10.618 2 12 2C13.382 2 14.682 2.26267 15.9 2.788C17.118 3.31333 18.1763 4.02567 19.075 4.925C19.9737 5.82433 20.6863 6.88267 21.213 8.1C21.7397 9.31733 22.002 10.6173 22 12C21.998 13.3827 21.7353 14.6827 21.212 15.9C20.6887 17.1173 19.9763 18.1757 19.075 19.075C18.1737 19.9743 17.1153 20.687 15.9 21.213C14.6847 21.739 13.3847 22.0013 12 22Z" fill="white"/>
-            </svg><p>${message}</p>`;
-        default:
-            break;
+import pops from "./node_modules/pop-message/index.js";
+document.querySelector("#simpleSuccess").addEventListener("click", () => {
+    const successMessage = document.querySelector(
+        "#simplePopTextSuccess"
+    ).value;
+    if (successMessage) {
+        pops.simplePop("success", successMessage);
+    } else pops.simplePop("success", "Welcome to my website!");
+});
+document.querySelector("#simpleError").addEventListener("click", () => {
+    const errorMessage = document.querySelector("#simplePopTextError").value;
+    if (errorMessage) {
+        pops.simplePop("error", errorMessage);
+    } else pops.simplePop("error", "An error occurred");
+});
+document.querySelector("#confirm").addEventListener("click", async () => {
+    const confirmMessage = document.querySelector("#confirmText").value;
+    let bool;
+    if (confirmMessage) {
+        bool = await pops.confirmPop(confirmMessage);
+    } else {
+        bool = await pops.confirmPop("Are you sure you want to delete?");
     }
-    alert.innerHTML += closeIcon;
-    body.appendChild(alert);
+    if (bool) {
+        pops.simplePop(
+            "success",
+            "The user confirmed, 'true' was returned to the function"
+        );
+    } else {
+        pops.simplePop(
+            "error",
+            "The user cancelled, 'false' was returned to the function"
+        );
+    }
+});
+document.querySelector("#input1").addEventListener("click", async () => {
+    const inputMessage = document.querySelector("#inputForm1").value;
+    let input;
+    if (inputMessage) {
+        input = await pops.inputPop(inputMessage);
+    } else {
+        input = await pops.inputPop("What's your name?");
+    }
+    if (input) {
+        pops.simplePop("success", `"${input}" was returned to the variable`);
+    } else {
+        pops.simplePop("error", `"${input}" was returned to the variable`);
+    }
+});
+document.querySelector("#input2").addEventListener("click", async () => {
+    let inputMessage = document.querySelector("#inputForm2").value;
+    let input;
+    if (inputMessage) {
+        inputMessage = JSON.parse(inputMessage);
+        input = await inputPops(inputMessage);
+    } else {
+        input = await inputPops([
+            { name: "What's your name?" },
+            { surname: "Surname?" },
+        ]);
+    }
+    if (input) {
+        let res = "[";
+        input.forEach((val) => {
+            res +=
+                "{" +
+                Object.keys(val)[0] +
+                " : " +
+                val[Object.keys(val)[0]] +
+                "} ,";
+        });
+        res = res.slice(0, -2);
+        res += "]";
+        pops.simplePop("success", `"${res}" was returned to the variable`);
+    } else {
+        pops.simplePop("error", `"${input}" was returned to the variable`);
+    }
+});
+//live preview:
+const sandboxPreview1 = document.getElementById("sandboxPreview1");
+const sandboxPreview2 = document.getElementById("sandboxPreview2");
+const sandboxPreview3 = document.getElementById("sandboxPreview3");
+const sandboxPreview4 = document.getElementById("sandboxPreview4");
+const sandboxPreview5 = document.getElementById("sandboxPreview5");
 
-    setTimeout(function () {
-        alert.style.transition = "top 0.5s ease-out";
-        alert.style.top = "10px";
-    }, 100);
+const successInput = document.getElementById("simplePopTextSuccess");
+const errorInput = document.getElementById("simplePopTextError");
+const confirmInput = document.getElementById("confirmText");
+const inputInput = document.getElementById("inputForm1");
+const multipleInput = document.getElementById("inputForm2");
 
+function updatePreview() {
+    const successInput = document.getElementById("simplePopTextSuccess").value;
+    const errorInput = document.getElementById("simplePopTextError").value;
+    const confirmInput = document.getElementById("confirmText").value;
+    const inputInput = document.getElementById("inputForm1").value;
+    const multipleInput = document.getElementById("inputForm2").value;
 
-    delayedRemove(timeMS);
+    sandboxPreview1.innerText = `pops.simplePop("success", "${successInput}")`;
+    sandboxPreview2.innerText = `pops.simplePop("error", "${errorInput}")`;
+    sandboxPreview3.innerText = `const bool = await pops.confirmPop("${confirmInput}")`;
+    sandboxPreview4.innerText = `const input = await pops.inputPop("${inputInput}")`;
+    sandboxPreview5.innerText = `const multipleInput = await inputPops("${multipleInput}")`;
 }
 
-export async function confirmPop(message) {
-    closeAllPop();
-    return new Promise((resolve, reject) => {
-        const body = document.querySelector("body");
-        const alert = document.createElement("div");
-        alert.classList.add("pop", "pop-confirm");
-        alert.innerHTML = `<p>${message}</p><div class="pop-buttonGroup"><button class="pop-btn pop-cancelButton">Cancel</button><button class="pop-btn pop-yesButton">Yes</button></div>`;
-        body.appendChild(alert);
-
-        document.querySelector(".pop-cancelButton").addEventListener("click", () => {
-            alert.remove();
-            resolve(false);
-        });
-
-        document.querySelector(".pop-yesButton").addEventListener("click", () => {
-            alert.remove();
-            resolve(true);
-        });
-    });
-}
-
-export async function inputPop(message) {
-    closeAllPop();
-    return new Promise((resolve, reject) => {
-        const body = document.querySelector("body");
-        const alert = document.createElement("form");
-        alert.classList.add("pop-confirm");
-        alert.innerHTML = `<p>${message}</p><input required class="pop-input" id="inputText" type="text"><div class="pop-buttonGroup"><button class="pop-btn pop-cancelButton">Cancel</button><button type="submit" class="pop-btn pop-yesButton pop-submitButton">Submit</button></div>`;
-        body.appendChild(alert);
-
-        document.querySelector(".pop-cancelButton").addEventListener("click", () => {
-            alert.remove();
-            resolve(null);
-        });
-
-        alert.addEventListener("keypress", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault(); // Prevent the default form submission
-                document.querySelector(".pop-submitButton").click(); // Trigger the submit button click
-            }
-        });
-
-        alert.addEventListener("submit", function (event) {
-            event.preventDefault();
-            if (this.checkValidity()) {
-                const input = document.querySelector("#inputText").value;
-                alert.remove();
-                resolve(input);
-            }
-        });
-    });
-}
-
-export async function inputPops(vals) {
-    closeAllPop();
-    return new Promise((resolve, reject) => {
-        const body = document.querySelector("body");
-        const alert = document.createElement("form");
-        alert.classList.add("pop-confirm");
-        vals.forEach(val => {
-            const key = Object.keys(val)[0];
-            const message = val[key];
-            const inputDiv = document.createElement("div");
-            inputDiv.classList.add("inputDiv");
-            inputDiv.innerHTML = `<p class="inputPopsText">${message}</p><input required class="pop-input" id="${key}" type="text">`;
-            alert.appendChild(inputDiv);
-        });
-        alert.innerHTML += `<div class="pop-buttonGroup inputPopsButtons"><button class="pop-btn pop-cancelButton">Cancel</button><button type="submit" class="pop-btn pop-yesButton pop-submitButton">Submit</button></div>`;
-        body.appendChild(alert);
-
-        document.querySelector(".pop-cancelButton").addEventListener("click", () => {
-            alert.remove();
-            resolve(null);
-        });
-
-        alert.addEventListener("submit", function (event) {
-            event.preventDefault();
-            if (this.checkValidity()) {
-                const inputs = document.querySelectorAll(".pop-input");
-                const response = [];
-                inputs.forEach(input => {
-                    const val = input.value;
-                    const key = input.id;
-                    response.push({ [key]: val });
-                });
-                alert.remove();
-                resolve(response);
-            }
-        });
-    });
-}
-
-const pops = { simplePop, confirmPop, inputPop, inputPops };
-
-export default pops;
+successInput.addEventListener("input", updatePreview);
+errorInput.addEventListener("input", updatePreview);
+confirmInput.addEventListener("input", updatePreview);
+inputInput.addEventListener("input", updatePreview);
+multipleInput.addEventListener("input", updatePreview);
+updatePreview();
+sandboxPreview5.innerText = `const multipleInput = await inputPops([{"name":"What's your name?"}, {"surname":"Surname?"}])`;

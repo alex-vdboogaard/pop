@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pop!</title>
+        <link rel="stylesheet" href="./node_modules/pop-message/pop.css" />
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-family: Arial, Helvetica, sans-serif;
+                overflow-x: hidden;
+            }
+
+            main {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                height: auto;
+                justify-content: center;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            h1 {
+                font-size: 60px;
+                margin-bottom: 0px;
+            }
+
+            h2 {
+                font-size: 45px;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+
+            h3 {
+                font-size: 35px;
+                font-weight: 500;
+            }
+
+            .subheading {
+                margin-bottom: 50px;
+                font-size: 25px;
+                margin-top: 8px;
+            }
+
+            .example-input {
+                padding: 10px 20px;
+                font-size: 20px;
+                margin-right: 5px;
+                height: 100%;
+            }
+
+            .example-button {
+                padding: 10px 20px;
+                background-color: white;
+                color: black;
+                border: 2px solid;
+                font-size: 19px;
+                cursor: pointer;
+                transition: background-color 0.4s;
+            }
+
+            button:hover {
+                background-color: #ededed;
+            }
+
+            .example-div {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .sandboxPreview {
+                width: 90%;
+                max-width: 600px;
+                border: 1px solid #ccc;
+                padding: 20px;
+                border: 1px solid #ccc;
+                white-space: pre-wrap;
+                overflow-wrap: break-word;
+                margin-bottom: 40px;
+                margin-top: 15px;
+                font-size: 20px;
+            }
+
+            @media (max-width: 570px) {
+                h1 {
+                    font-size: 40px;
+                }
+
+                h2 {
+                    font-size: 30px;
+                }
+                h3 {
+                    font-size: 25px;
+                    margin-bottom: 5px;
+                }
+                input {
+                    max-width: 100%;
+                    margin-right: 0px;
+                }
+                .example-div {
+                    flex-direction: column;
+                    width: 100%;
+                }
+
+                .example-button {
+                    margin-top: 10px;
+                }
+
+                .subheading {
+                    margin-bottom: 20px;
+                }
+
+                .sandboxPreview {
+                    max-width: 85%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Example usage</h1>
+            <p class="subheading">
+                Type a typical message you would show to a user.
+            </p>
+            <h2>Basic popups</h2>
+            <h3>Success message</h3>
+            <div class="example-div">
+                <input
+                    class="example-input"
+                    type="text"
+                    id="simplePopTextSuccess"
+                />
+                <button id="simpleSuccess" class="example-button">
+                    Success message
+                </button>
+            </div>
+            <div class="sandboxPreview" id="sandboxPreview1"></div>
+
+            <h3>Error message</h3>
+            <div class="example-div">
+                <input
+                    class="example-input"
+                    type="text"
+                    id="simplePopTextError"
+                />
+                <button id="simpleError" class="example-button">
+                    Error message
+                </button>
+            </div>
+            <div class="sandboxPreview" id="sandboxPreview2"></div>
+
+            <h3>Confirmation popup</h3>
+            <div class="example-div">
+                <input class="example-input" type="text" id="confirmText" />
+                <button id="confirm" class="example-button">Confirm</button>
+            </div>
+            <div class="sandboxPreview" id="sandboxPreview3"></div>
+
+            <h3>Input popup</h3>
+            <div class="example-div">
+                <input class="example-input" type="text" id="inputForm1" />
+                <button id="input1" class="example-button">Get input</button>
+            </div>
+            <div class="sandboxPreview" id="sandboxPreview4"></div>
+
+            <h2>More advanced popups</h2>
+            <h3>Multiple inputs popup</h3>
+            <div class="example-div">
+                <input class="example-input" type="text" id="inputForm2" />
+                <button id="input2" class="example-button">
+                    Get multiple input
+                </button>
+            </div>
+            <div class="sandboxPreview" id="sandboxPreview5"></div>
+        </main>
+        <script type="module" src="./index.js"></script>
+    </body>
+</html>
